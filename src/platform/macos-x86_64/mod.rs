@@ -26,7 +26,7 @@ pub unsafe fn syscall1(n: usize, a1: usize) -> usize {
     let ret : usize;
     asm!("syscall" : "={rax}"(ret)
                    : "{rax}"(n), "{rdi}"(a1)
-                   : "rcx", "r11", "memory"
+                   : "rcx", "r11", "memory", "rdi"
                    : "volatile");
     ret
 }
@@ -36,7 +36,7 @@ pub unsafe fn syscall2(n: usize, a1: usize, a2: usize) -> usize {
     let ret : usize;
     asm!("syscall" : "={rax}"(ret)
                    : "{rax}"(n), "{rdi}"(a1), "{rsi}"(a2)
-                   : "rcx", "r11", "memory"
+                   : "rcx", "r11", "memory", "rdi", "rsi"
                    : "volatile");
     ret
 }
@@ -46,7 +46,7 @@ pub unsafe fn syscall3(n: usize, a1: usize, a2: usize, a3: usize) -> usize {
     let ret : usize;
     asm!("syscall" : "={rax}"(ret)
                    : "{rax}"(n), "{rdi}"(a1), "{rsi}"(a2), "{rdx}"(a3)
-                   : "rcx", "r11", "memory"
+                   : "rcx", "r11", "memory", "rdi", "rsi", "rdx"
                    : "volatile");
     ret
 }
@@ -58,7 +58,7 @@ pub unsafe fn syscall4(n: usize, a1: usize, a2: usize, a3: usize,
     asm!("syscall" : "={rax}"(ret)
                    : "{rax}"(n), "{rdi}"(a1), "{rsi}"(a2), "{rdx}"(a3),
                      "{r10}"(a4)
-                   : "rcx", "r11", "memory"
+                   : "rcx", "r11", "memory", "rdi", "rsi", "rdx", "r10"
                    : "volatile");
     ret
 }
@@ -70,7 +70,7 @@ pub unsafe fn syscall5(n: usize, a1: usize, a2: usize, a3: usize,
     asm!("syscall" : "={rax}"(ret)
                    : "{rax}"(n), "{rdi}"(a1), "{rsi}"(a2), "{rdx}"(a3),
                      "{r10}"(a4), "{r8}"(a5)
-                   : "rcx", "r11", "memory"
+                   : "rcx", "r11", "memory", "rdi", "rsi", "rdx", "r10", "r8"
                    : "volatile");
     ret
 }
@@ -82,7 +82,7 @@ pub unsafe fn syscall6(n: usize, a1: usize, a2: usize, a3: usize,
     asm!("syscall" : "={rax}"(ret)
                    : "{rax}"(n), "{rdi}"(a1), "{rsi}"(a2), "{rdx}"(a3),
                      "{r10}"(a4), "{r8}"(a5), "{r9}"(a6)
-                   : "rcx", "r11", "memory"
+                   : "rcx", "r11", "memory", "rdi", "rsi", "rdx", "r10", "r8", "r9"
                    : "volatile");
     ret
 }
